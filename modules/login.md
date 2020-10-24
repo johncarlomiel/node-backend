@@ -37,6 +37,7 @@ const checkUser = async (username, password) => {
 <hr>
 
 
+#### Create the controller
 ```javascript
 const loginController = async (req, res) => {
     const { username, password } = req.body;
