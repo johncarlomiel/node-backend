@@ -1,9 +1,19 @@
 # REST API Example
 
+
+## Outline
+- Installation
+- Database Creation
+- Server setup
+- Development
+- Deployment
+
 ## Tools
 - NodeJS
 - Postman
 - Mysql
+- Mysql Workbench
+- VSCode
 
 ### Topics
 
@@ -45,6 +55,8 @@ Body Payload Example
 }
 ```
 
+<hr>
+
 #### CRUD (Create, Read, Update, Delete) Resources
 
 ##### Create Specification
@@ -64,6 +76,7 @@ FormData Example
 ```
 
 <hr>
+
 ##### Read
 
 | Key |  Value |
