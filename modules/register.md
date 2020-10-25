@@ -1,4 +1,24 @@
 # Registration
+| Key |  Value |
+| --- | --- |
+| Endpoint | `/users` |
+| Method | `POST` |
+| Validation | check if the username exists if so return a 422 (Unprocessable Entity) with message that username is already exists | 
+| Description | this request will a new user on the database and the user password will be hashed using bcrypt beforehand. |
+
+Body Payload Example
+```json
+{
+  "username": "test",
+  "password": "test123"
+}
+```
+
+- More info for bcrypt:
+  - [Security Stackexchange](https://security.stackexchange.com/questions/4781/do-any-security-experts-recommend-bcrypt-for-password-storage)
+  - [Article](https://codahale.com/how-to-safely-store-a-password/)
+<hr>
+
 
 #### Install bcrypt `npm i bcryptjs`
 
