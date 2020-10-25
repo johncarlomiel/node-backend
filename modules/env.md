@@ -18,7 +18,8 @@ DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=
 DB_NAME=rest_api
-DOMAIN_URL
+JWT_SECRET=superstrongpassword
+DOMAIN_URL=http://localhost:3000
 ```
 
 Change the DB Connection
