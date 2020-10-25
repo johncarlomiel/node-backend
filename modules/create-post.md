@@ -50,13 +50,12 @@ module.exports = verifyToken;
 ```
 
 Create a new controller file `post.controller.js`
-```
+```javascript
 const postService = require('../services/post.service');
 
 const createPostController = async (req, res) => {
     const content = req.body.content;
     const user = req.user;
-    console.log(user);
     const DOMAIN_URL = process.env.DOMAIN_URL;
     let fileName = '';
 
@@ -103,4 +102,40 @@ module.exports = {
     createPost
 }
 ```
+
+#### Create a new policy to validate the request input `policies/post.policy.js`
+
+```javascript
+const createPostPolicy = (req, res, next) => {
+    const isContentExists = req.body.content;
+    const isFileExists = req.files && req.files.file;
+
+    if(!isContentExists && !isFileExists) {
+        res.status(422).json({ message: 'You need to enter either content or file or both'})
+    }
+
+    next();
+};
+
+
+module.exports = {
+    createPostPolicy
+}
+```
+<hr>
+
+#### Change the create post route on `routes/post.route.js`
+
+- Import the `postPolicy` and `verifyToken`
+  ```javascript
+  const verifyToken = require('../middlewares/verify');
+  const postPolicy = require('../policies/post.policy')
+  ```
+
+- Update the route
+  ```javascript
+  router.post('/', verifyToken, postPolicy.createPostPolicy, postController.createPostController);
+  ```
+
+
 
