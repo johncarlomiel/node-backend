@@ -54,22 +54,27 @@ Create a new controller file `post.controller.js`
 const postService = require('../services/post.service');
 
 const createPostController = async (req, res) => {
+    let fileName = '';
     const content = req.body.content;
     const user = req.user;
     const DOMAIN_URL = process.env.DOMAIN_URL;
-    let fileName = '';
 
     if (req.files && req.files.file) {
         const media = req.files.file;
         const fileExtention = media.mimetype.split('/')[1];
-        fileName = `${new Date().toLocaleDateString().replace(/\//g, '-')}.${fileExtention}`;
+        fileName = `${new Date().getTime()}.${fileExtention}`;
         media.mv(`assets/images/${fileName}`);
     }
 
     try {
         const postId = await postService.createPost(content, fileName, user.userId);
         const file = fileName ? `${DOMAIN_URL}/assets/images/${fileName}` : '';
-        res.json({ postId, file, content, user: { id: user.userId, username: user.username } });
+        res.json({
+            postId,
+            file,
+            content,
+            user: { id: user.userId, username: user.username }
+        });
     } catch (error) {
         res.status(400).json({ error });
     }
