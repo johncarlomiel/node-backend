@@ -1,4 +1,19 @@
 # Login
+| Key |  Value |
+| --- | --- |
+| Endpoint | `/session` |
+| Method | `POST` |
+| Description | this request will check if the username and password match a user in the database and returns a `accessToken` and save the `refreshToken` on `httpOnly` cookies |
+
+Body Payload Example
+```json
+{
+  "username": "test",
+  "password": "test123"
+}
+```
+
+<hr>
 
 #### Install `npm i jsonwebtoken` for JWT implementation
 
