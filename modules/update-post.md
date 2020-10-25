@@ -16,6 +16,30 @@ FormData Example
 }
 ```
 
+#### Create util file `util.js` that has function to delete a file
+```javascript
+const fs = require('fs').promises;
+
+const deleteFile = async (path) => {
+    try {
+        await fs.unlink(path);
+        console.log(`successfully deleted ${path}`);
+      } catch (error) {
+        console.error('there was an error:', error.message);
+      }
+};
+
+
+module.exports = { 
+    deleteFile
+}
+```
+
+#### Import the `deleteFile` on `post.controller.js`
+```javascript
+const { deleteFile } = require('../util');
+```
+
 #### Create the controller
 
 ```javascript
