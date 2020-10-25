@@ -115,6 +115,14 @@ const updatePostById = async (content, fileName, postId, updatedBy) => {
 
     return post;
 };
+
+const getPostById = async (postId) => {
+    const query = 'SELECT postId, content, filePath FROM posts WHERE postId = ?'
+
+    const [posts] = await pool.query(query, postId);
+
+    return posts[0];
+};
 ```
 
 #### Update the service exports
